@@ -27,6 +27,7 @@ import dev_srsctc100
 import dev_cryomechcpa1110
 import dev_highfinesse
 import dev_rp_lockbox
+import dev_lakeshore218
 
 logger = logging.getLogger()
 
