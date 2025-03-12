@@ -72,7 +72,7 @@ def init_device(device):
 
     # Cryomech CPA1110 helium compressor
     # (using Modbus TCP protocol over ethernet interface)
-    if device['Model'] == 'Cryomech CPA1110':
+    if device['Model'] in ['Cryomech CPA1110']:
         device_instance = dev_cryomechcpa1110.Device(device)
 
     # HighFinesse wavemeter
@@ -83,6 +83,10 @@ def init_device(device):
     # Red Pitaya lockbox (rp-lockbox)
     if device['Model'] == 'rp-lockbox':
         device_instance = dev_rp_lockbox.Device(device)
+        
+    # Lakeshore 218 Temperature Monitor
+    if device['Model'] == 'Lakeshore 218':
+        device_instance = dev_lakeshore218.Device(device)
 
     if device_instance is None:
         msg = f'Unknown device model \'{device["Model"]}\''

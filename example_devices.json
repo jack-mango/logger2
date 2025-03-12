@@ -373,5 +373,190 @@
                 }
             }    
         }
+    },
+    {
+        "Device":"Cryomech PT415 Cryocooler",
+        "Model":"Cryomech PT415",
+        "Address":"10.0.0.154",
+        "ModbusDeviceID": "16",
+        "Timeout": 1,
+        "tags":{},
+        "measurement":"temperature",
+        "Channels":
+        {
+            "CoolantInTemperature":
+            {   
+                "Type":"CoolantInTemperature",
+                "Multiplier":1,
+                "field-key":"value",
+                "tags":
+                {
+                    "sensor":"CoolantIn",
+                    "unit":"DegC"
+                }
+            },
+            "CoolantOutTemperature":
+            {   
+                "Type":"CoolantOutTemperature",
+                "Multiplier":1,
+                "field-key":"value",
+                "tags":
+                {
+                    "sensor":"CoolantOut",
+                    "unit":"DegC"
+                }
+            },
+	    	"OilTemperature":
+	    	{
+	    		"Type":"OilTemperature",
+				"Multiplier":1,
+				"field-key":"value",
+				"tags":
+				{
+				    "sensor": "oil",
+				    "unit":"DegC"        
+				}
+	    	}, 
+	    	"HeTemperature":
+	    	{
+	    		"Type":"HeTemperature",
+				"Multiplier":1,
+				"field-key":"value",
+				"tags":
+				{
+				    "sensor": "helium",
+				    "unit":"DegC"        
+				}
+	    	},
+	    	"LowPressure":
+	    	{
+	    		"Type":"LowPressure",
+				"Multiplier":1,
+				"field-key":"value",
+				"tags":
+				{
+				    "sensor": "low",
+				    "unit":"PSI"        
+				}
+	    	}, 
+ 	    	"HighPressure":
+	    	{
+	    		"Type":"HighPressure",
+				"Multiplier":1,
+				"field-key":"value",
+				"tags":
+				{
+				    "sensor": "high",
+				    "unit":"PSI"        
+				}
+	    	}
+        }        
+    },
+    {
+        "Device":"Lakeshore 218 Temperature Monitor",
+        "Model":"Lakeshore 218",
+        "Address":"/dev/ttyUSB0",
+        "SerialConnectionParams":
+        {
+            "baudrate":9600,
+            "bytesize":7,
+            "stopbits":1,
+            "parity":"O"
+        },
+        "Timeout":1,
+        "ParallelReadout":true,
+        "tags":{},
+        "measurement":"cryotemperature",
+        "Channels":
+        {
+            "HFL Top":
+            {
+                "DeviceChannel": 1,
+				"Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"HFL Top",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"40K Top":
+            {
+				"DeviceChannel": 2,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"40K Top",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"HFL Mid":
+            {
+				"DeviceChannel": 3,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"HFL Mid",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"4K Top":
+            {
+				"DeviceChannel": 4,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"4K Top",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"HFL End":
+            {
+				"DeviceChannel": 5,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"HFL End",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"4K PT":
+            {
+				"DeviceChannel": 6,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"4K PT",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"Cell":
+            {
+				"DeviceChannel": 7,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"Cell",         					
+                    "unit":"Kelvin"
+                }
+            },
+			"4K Bottom":
+            {
+				"DeviceChannel": 8,
+                "Type":"Temperature",				
+                "field-key":"temperatures",
+                "tags":
+                {
+                    "sensor":"4K Bottom",         					
+                    "unit":"Kelvin"
+                }
+            }
+        }
     }	
 ]

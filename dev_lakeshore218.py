@@ -49,7 +49,7 @@ class Device(dev_generic.Device):
         if rsp == '':
             raise LoggerError(
                 "No response received")
-        return rsp[4:]
+        return rsp[1:]
 
     def read_temperature(self, chan):
         """Read temperature."""
@@ -63,7 +63,7 @@ class Device(dev_generic.Device):
         readings = {}
         for channel_id, chan in chans.items():
             if chan['Type'] in ['Temperature']:
-                value = self.read_temperature(chan[''])
+                value = self.read_temperature(chan['DeviceChannel'])
                 readings[channel_id] = value
             else:
                 raise LoggerError(

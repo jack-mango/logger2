@@ -97,7 +97,7 @@ class Device(dev_generic.Device):
         chans = self.device['Channels']
         readings = {}
         for channel_id, chan in chans.items():
-            if chan['Type'] == 'CoolantIntTemperature':
+            if chan['Type'] == 'CoolantInTemperature':
                 value = self.read_coolant_in_temperature()
                 readings[channel_id] = value
             elif chan['Type'] == 'CoolantOutTemperature':
