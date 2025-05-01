@@ -558,5 +558,38 @@
                 }
             }
         }
+    },
+    {
+        "Device":"Labjack T7 Analog to Digital Converter",
+        "Model":"T7",
+        "Serial Number":470021122,
+        "Timeout":1,
+        "tags":{},
+        "measurement":"pressuregauge",
+        "Channels":
+        {
+            "Beam Box Pressure":
+            {
+                "DeviceChannel": 0,
+				"Type":"Voltage",				
+                "field-key":"Voltage",
+                "tags":
+                {
+                    "sensor":"Beam Box Pressure",         					
+                    "unit":"Volts"
+                }
+            },
+			"HFL Pressure":
+            {
+				"DeviceChannel": 1,
+                "Type":"Voltage",				
+                "field-key":"Voltage",
+                "tags":
+                {
+                    "sensor":"HFL Pressure",         					
+                    "unit":"Volts"
+                }
+            }
+        }
     }	
 ]

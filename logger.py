@@ -28,6 +28,7 @@ import dev_cryomechcpa1110
 import dev_highfinesse
 import dev_rp_lockbox
 import dev_lakeshore218
+import dev_labjack
 
 logger = logging.getLogger()
 
@@ -44,7 +45,7 @@ def init_device(device):
         'Trying to initialize device \'%s\' of model \'%s\'', device['Device'], device['Model'])
 
     device_instance = None
-
+    
     # Keysight DAQ970A/973A multimeter (via VISA interface)
     if device['Model'] == 'Keysight DAQ973A':
         device_instance = dev_keysightdaq973a.Device(device)
@@ -87,6 +88,10 @@ def init_device(device):
     # Lakeshore 218 Temperature Monitor
     if device['Model'] == 'Lakeshore 218':
         device_instance = dev_lakeshore218.Device(device)
+        
+    # Labjack T7 Analog to Digital Converter
+    if device['Model'] == 'T7':
+        device_instance = dev_labjack.Device(device)
 
     if device_instance is None:
         msg = f'Unknown device model \'{device["Model"]}\''

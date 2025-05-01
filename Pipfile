@@ -10,6 +10,7 @@ influxdb-client = "*"
 numpy = "*"
 requests = "*"
 pymodbus = "*"
+labjack-ljm = "*"
 
 
 [dev-packages]
