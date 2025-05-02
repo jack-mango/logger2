@@ -29,6 +29,7 @@ import dev_highfinesse
 import dev_rp_lockbox
 import dev_lakeshore218
 import dev_labjack
+import dev_thorlabs_pm100d
 
 logger = logging.getLogger()
 
@@ -92,6 +93,10 @@ def init_device(device):
     # Labjack T7 Analog to Digital Converter
     if device['Model'] == 'T7':
         device_instance = dev_labjack.Device(device)
+
+    # Thorlabs PM100D power meter
+    if device['Model'] == 'PM100D':
+        device_instance = dev_thorlabs_pm100d.Device(device)
 
     if device_instance is None:
         msg = f'Unknown device model \'{device["Model"]}\''
