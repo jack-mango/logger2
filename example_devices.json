@@ -591,5 +591,35 @@
                 }
             }
         }
+    },
+    {
+        "Device":"Thorlabs PM100D Power Meter",
+        "Model":"PM100D",
+        "Address":"USB0::0x1313::0x8078::P0038494::INSTR",
+        "VISAIDN":"Thorlabs,PM100D,P0038494,2.8.1",
+        "Timeout":1,
+        "tags":{},
+        "measurement":"powermeter",
+        "Channels":
+        {
+            "Power":
+            {
+                "Type":"Power",
+                "field-key":"power",
+                "tags":
+                {
+                    "unit":"W"
+                }
+            },
+			"Energy":
+            {
+                "Type":"Energy",
+                "field-key":"energy",
+                "tags":
+                {
+                    "unit":"J"
+                }
+            }
+        }
     }	
 ]
