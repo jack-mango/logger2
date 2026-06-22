@@ -30,6 +30,7 @@ import dev_rp_lockbox
 import dev_lakeshore218
 import dev_labjack
 import dev_thorlabs_pm100d
+import dev_kjlc300
 
 logger = logging.getLogger()
 
@@ -62,6 +63,10 @@ def init_device(device):
     # Kurt J. Lesker KJLC 354 series ion pressure gauge (via RS-485 port)
     if device['Model'] == 'KJLC 354':
         device_instance = dev_kjlc354.Device(device)
+        
+    # Kurt J. Lesker KJLC 300 series pirani pressure gauge (via RS-232 port)
+    if device['Model'] == 'KJLC 300':
+        device_instance = dev_kjlc300.Device(device)
 
     # Met One DR-528 handheld particle counter (via RS-232 port)
     if device['Model'] == 'Met One DR-528':

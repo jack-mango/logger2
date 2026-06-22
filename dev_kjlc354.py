@@ -31,12 +31,13 @@ import serial
 import logging
 
 import dev_generic
+import dev_kjlc300
 
 from defs import LoggerError
 
 logger = logging.getLogger()
 
-class Device(dev_generic.Device):
+class Device(dev_kjlc300.Device):
 
     def __init__(self, device):
         """
@@ -46,36 +47,6 @@ class Device(dev_generic.Device):
             Configuration dict of the device to initialize.
         """
         super(Device, self).__init__(device)
-        try:
-            self.connection = serial.Serial(
-                device["Address"], timeout=device["Timeout"],
-                **device.get('SerialConnectionParams', {}))
-        except serial.SerialException:
-            raise LoggerError(
-                f"Serial connection on port {device['Address']} couldn't be opened")
-
-    def query(self, command):
-        """Query device with command `command` (str) and return response."""
-        internal_address = self.device["DeviceSpecificParams"]["InternalAddress"]
-        query = f'#{internal_address}{command}\r'.encode(encoding="ASCII")
-        n_write_bytes = self.connection.write(query)
-        if n_write_bytes != len(query):
-            raise LoggerError("Failed to write to device")
-        rsp = self.connection.readline()
-        try:
-            rsp = rsp.decode(encoding="ASCII")
-        except UnicodeDecodeError:
-            raise LoggerError(f"Error in decoding response ('{rsp}') received")
-        if rsp == '':
-            raise LoggerError(
-                "No response received")
-        if rsp.startswith("?"):
-            raise LoggerError(
-                f"Received an error response: '{rsp}'")
-        if not rsp.startswith(f"*{internal_address} "):
-            raise LoggerError(
-                f"Didn't receive correct acknowledgement (response received: '{rsp}')")
-        return rsp[4:]
 
     def read_pressure(self):
         """Read pressure."""
@@ -91,17 +62,3 @@ class Device(dev_generic.Device):
         else:
             rsp = self.query("RD")
         return float(rsp)
-
-    def get_values(self):
-        """Read channels."""
-        chans = self.device['Channels']
-        readings = {}
-        for channel_id, chan in chans.items():
-            if chan['Type'] in ['Pressure']:
-                value = self.read_pressure()
-                readings[channel_id] = value
-            else:
-                raise LoggerError(
-                    f'Unknown channel type \'{chan["Type"]}\' for channel \'{channel_id}\''
-                    +f' of device \'{self.device["Device"]}\'')
-        return readings
